@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jefferson Almeida — Senior QA Engineer & SDET</title>
+<meta name="description" content="Senior QA Engineer com 9 anos em automação Web, API e Mobile. Quality Engineering, Shift Left, IA aplicada a QE.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #0a0a0c;
+  --bg-2:      #111116;
+  --bg-3:      #16161d;
+  --line:      #25252e;
+  --line-2:    #34343f;
+  --ink:       #f5f5f7;
+  --ink-2:     #a8a8b3;
+  --ink-3:     #6e6e7a;
+  --fire:      #ff6b35;
+  --cyan:      #4dd4ff;
+  --green:     #4ade80;
+  --serif:     'Fraunces', Georgia, serif;
+  --sans:      'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono:      'JetBrains Mono', ui-monospace, 'Courier New', monospace;
+  --max:       1240px;
+  --pad:       clamp(1.25rem, 4vw, 3rem);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+*::selection { background:var(--fire); color:var(--bg); }
+html { scroll-behavior:smooth; }
+body {
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-weight:300;
+  line-height:1.6;
+  overflow-x:hidden;
+  position:relative;
+  min-height:100vh;
+}
+
+/* ── Grain + ambient gradient ────────────────────────────── */
+body::before {
+  content:''; position:fixed; inset:0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity:.04; pointer-events:none; z-index:9000; mix-blend-mode:overlay;
+}
+body::after {
+  content:''; position:fixed; inset:0;
+  background:
+    radial-gradient(900px 600px at 8% -10%, rgba(255,107,53,.13), transparent 60%),
+    radial-gradient(800px 500px at 95% 5%, rgba(77,212,255,.10), transparent 60%),
+    radial-gradient(1000px 700px at 50% 110%, rgba(74,222,128,.06), transparent 70%);
+  pointer-events:none; z-index:0;
+}
+
+/* ── Layout ──────────────────────────────────────────────── */
+.shell { position:relative; z-index:1; max-width:var(--max); margin:0 auto; padding:0 var(--pad); }
+
+/* ── Topbar ──────────────────────────────────────────────── */
+.topbar {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:1.5rem var(--pad);
+  font-family:var(--mono);
+  font-size:.7rem; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--ink-3);
+  border-bottom:1px solid var(--line);
+  position:relative; z-index:2;
+}
+.topbar .status { display:inline-flex; align-items:center; gap:.55rem; color:var(--ink-2); }
+.dot {
+  width:8px; height:8px; border-radius:50%; background:var(--green);
+  box-shadow:0 0 0 4px rgba(74,222,128,.18); animation:pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100% { box-shadow:0 0 0 4px rgba(74,222,128,.15); transform:scale(1); }
+  50%     { box-shadow:0 0 0 8px rgba(74,222,128,0);  transform:scale(1.1); }
+}
+.topbar .meta-right { display:flex; gap:1.4rem; }
+.topbar .meta-right span:nth-child(2) { color:var(--ink-2); }
+
+/* ── Hero ────────────────────────────────────────────────── */
+.hero { padding:clamp(4rem, 12vw, 8rem) 0 clamp(3rem, 8vw, 6rem); position:relative; }
+.hero .eyebrow {
+  font-family:var(--mono); font-size:.72rem; letter-spacing:.32em;
+  text-transform:uppercase; color:var(--fire); margin-bottom:1.5rem;
+  display:flex; align-items:center; gap:.8rem;
+}
+.hero .eyebrow::before {
+  content:''; width:32px; height:1px; background:var(--fire);
+}
+.hero h1 {
+  font-family:var(--serif); font-style:italic;
+  font-weight:300;
+  font-size:clamp(3.5rem, 13vw, 11rem);
+  line-height:.92; letter-spacing:-.04em;
+  color:var(--ink);
+  font-variation-settings:"opsz" 144, "SOFT" 50;
+  margin-bottom:1.2rem;
+}
+.hero h1 .ampersand {
+  color:var(--fire); font-style:italic;
+  font-variation-settings:"opsz" 144;
+}
+.hero h1 .stroke {
+  -webkit-text-stroke:1.5px var(--ink);
+  color:transparent;
+}
+.hero .subtitle {
+  display:flex; flex-wrap:wrap; gap:.6rem 1.5rem; align-items:center;
+  font-family:var(--mono); font-size:.85rem; letter-spacing:.06em;
+  color:var(--ink-2); margin-top:1.5rem; max-width:760px;
+}
+.hero .subtitle .pipe { color:var(--ink-3); }
+.hero .lead {
+  font-family:var(--serif); font-weight:300;
+  font-size:clamp(1.25rem, 2.4vw, 1.7rem); line-height:1.45;
+  color:var(--ink-2); max-width:780px; margin-top:2.5rem;
+  font-variation-settings:"opsz" 28;
+}
+.hero .lead em {
+  font-style:italic; color:var(--ink);
+  font-variation-settings:"opsz" 28, "SOFT" 80;
+}
+
+/* ── CTAs ────────────────────────────────────────────────── */
+.cta-row {
+  display:flex; flex-wrap:wrap; gap:1rem; margin-top:3rem;
+}
+.cta {
+  display:inline-flex; align-items:center; gap:.6rem;
+  padding:.85rem 1.4rem;
+  border:1px solid var(--line-2);
+  border-radius:999px;
+  font-family:var(--mono); font-size:.78rem; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--ink); text-decoration:none;
+  background:rgba(255,255,255,.02);
+  transition:all .35s cubic-bezier(.2,.8,.2,1);
+}
+.cta:hover {
+  border-color:var(--ink); background:var(--ink); color:var(--bg);
+  transform:translateY(-2px);
+}
+.cta.primary {
+  background:var(--fire); border-color:var(--fire); color:var(--bg);
+}
+.cta.primary:hover {
+  background:var(--ink); border-color:var(--ink); color:var(--bg);
+  transform:translateY(-2px);
+}
+.cta svg { width:14px; height:14px; }
+
+/* ── Section base ────────────────────────────────────────── */
+section { padding:clamp(4rem, 9vw, 7rem) 0; position:relative; }
+.section-head {
+  display:flex; align-items:baseline; justify-content:space-between;
+  gap:2rem; margin-bottom:3.5rem; flex-wrap:wrap;
+}
+.section-num {
+  font-family:var(--mono); font-size:.75rem;
+  letter-spacing:.18em; color:var(--fire); text-transform:uppercase;
+}
+.section-title {
+  font-family:var(--serif); font-weight:300; font-style:italic;
+  font-size:clamp(2.2rem, 5.5vw, 4.5rem); line-height:1; letter-spacing:-.025em;
+  font-variation-settings:"opsz" 144, "SOFT" 60;
+}
+.section-title .roman { font-style:normal; color:var(--ink); }
+.section-rule {
+  height:1px; background:var(--line); flex:1; min-width:60px; margin-bottom:.5rem;
+}
+
+/* ── Manifesto ───────────────────────────────────────────── */
+.manifesto p {
+  font-family:var(--serif); font-weight:300;
+  font-size:clamp(1.25rem, 2.2vw, 1.55rem);
+  line-height:1.55; max-width:880px; color:var(--ink-2);
+  font-variation-settings:"opsz" 36;
+}
+.manifesto p + p { margin-top:1.4rem; }
+.manifesto strong { color:var(--ink); font-weight:400; }
+.manifesto em { font-style:italic; color:var(--fire); }
+.manifesto .dropcap {
+  font-family:var(--serif); font-style:italic; font-weight:300;
+  float:left; font-size:5.5rem; line-height:.85;
+  margin:.15em .15em -.1em 0; color:var(--ink);
+  font-variation-settings:"opsz" 144, "SOFT" 100;
+}
+
+/* ── Metrics ─────────────────────────────────────────────── */
+.metrics {
+  display:grid; grid-template-columns:repeat(4, 1fr);
+  gap:1px; background:var(--line);
+  border-block:1px solid var(--line);
+}
+.metric {
+  background:var(--bg);
+  padding:clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 2vw, 2rem);
+  position:relative; transition:background .4s ease;
+}
+.metric:hover { background:var(--bg-2); }
+.metric .label {
+  font-family:var(--mono); font-size:.7rem; letter-spacing:.15em;
+  text-transform:uppercase; color:var(--ink-3); margin-bottom:1rem;
+}
+.metric .value {
+  font-family:var(--serif); font-weight:300;
+  font-size:clamp(2.6rem, 6vw, 4.8rem);
+  line-height:.9; letter-spacing:-.03em;
+  color:var(--ink);
+  font-variation-settings:"opsz" 144;
+  display:flex; align-items:baseline; gap:.05em;
+}
+.metric .value .unit {
+  font-size:.4em; font-style:italic;
+  color:var(--ink-3); font-variation-settings:"opsz" 36;
+}
+.metric .value .neg { color:var(--fire); }
+.metric .desc {
+  margin-top:1rem; font-size:.85rem; color:var(--ink-2);
+  line-height:1.5; max-width:240px;
+}
+
+/* ── Stack ───────────────────────────────────────────────── */
+.stack-grid {
+  display:grid; grid-template-columns:repeat(12, 1fr); gap:2rem;
+}
+.stack-cat {
+  grid-column:span 6;
+  border-top:1px solid var(--line);
+  padding-top:1.5rem;
+}
+.stack-cat .name {
+  font-family:var(--mono); font-size:.72rem; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--fire); margin-bottom:1.2rem;
+}
+.stack-cat .items {
+  display:flex; flex-wrap:wrap; gap:.5rem;
+}
+.tag {
+  font-family:var(--mono); font-size:.78rem;
+  padding:.35rem .75rem; border:1px solid var(--line-2);
+  border-radius:6px; color:var(--ink); background:rgba(255,255,255,.02);
+  transition:all .25s ease;
+}
+.tag:hover {
+  border-color:var(--cyan); color:var(--cyan);
+  background:rgba(77,212,255,.06);
+}
+.tag.hot {
+  border-color:rgba(255,107,53,.4); color:var(--fire);
+  background:rgba(255,107,53,.05);
+}
+.tag.hot:hover {
+  border-color:var(--fire);
+  background:rgba(255,107,53,.12);
+}
+
+/* ── Experience timeline ─────────────────────────────────── */
+.exp-list { display:flex; flex-direction:column; gap:0; }
+.exp {
+  display:grid; grid-template-columns:200px 1fr;
+  gap:3rem; padding:2.5rem 0;
+  border-top:1px solid var(--line);
+  position:relative;
+}
+.exp:last-child { border-bottom:1px solid var(--line); }
+.exp .when {
+  font-family:var(--mono); font-size:.78rem; color:var(--ink-2);
+  letter-spacing:.04em; padding-top:.4rem;
+}
+.exp .when .now {
+  color:var(--green); display:inline-flex; align-items:center; gap:.4rem;
+}
+.exp .when .now::before {
+  content:''; width:6px; height:6px; border-radius:50%;
+  background:var(--green); box-shadow:0 0 8px var(--green);
+}
+.exp .role {
+  font-family:var(--serif); font-weight:300; font-style:italic;
+  font-size:clamp(1.6rem, 3vw, 2.4rem); line-height:1.1;
+  font-variation-settings:"opsz" 72, "SOFT" 40;
+  margin-bottom:.3rem;
+}
+.exp .company {
+  font-family:var(--mono); font-size:.85rem;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--fire);
+  margin-bottom:1.2rem;
+}
+.exp .desc {
+  font-family:var(--serif); font-size:1.05rem; color:var(--ink-2);
+  line-height:1.55; margin-bottom:1.5rem; max-width:680px;
+  font-variation-settings:"opsz" 24;
+}
+.exp ul { list-style:none; display:flex; flex-direction:column; gap:.7rem; }
+.exp li {
+  position:relative; padding-left:1.6rem;
+  font-size:.95rem; color:var(--ink-2);
+  line-height:1.55; max-width:680px;
+}
+.exp li::before {
+  content:'→'; color:var(--fire);
+  font-family:var(--mono); font-size:.95rem;
+  position:absolute; left:0; top:.05rem;
+}
+.exp li b { color:var(--ink); font-weight:500; }
+.exp li .num { color:var(--cyan); font-family:var(--mono); font-size:.92em; white-space:nowrap; }
+
+/* ── Education ───────────────────────────────────────────── */
+.edu-grid { display:grid; gap:1px; background:var(--line);
+  border-block:1px solid var(--line); }
+.edu {
+  background:var(--bg); padding:1.8rem 2rem;
+  display:grid; grid-template-columns:200px 1fr 200px;
+  gap:2rem; align-items:center; transition:background .3s;
+}
+.edu:hover { background:var(--bg-2); }
+.edu .school {
+  font-family:var(--mono); font-size:.78rem;
+  letter-spacing:.1em; color:var(--ink-3); text-transform:uppercase;
+}
+.edu .degree {
+  font-family:var(--serif); font-weight:300; font-style:italic;
+  font-size:clamp(1.15rem, 2vw, 1.5rem); color:var(--ink);
+  font-variation-settings:"opsz" 36;
+}
+.edu .when {
+  font-family:var(--mono); font-size:.78rem; color:var(--ink-2);
+  text-align:right; letter-spacing:.05em;
+}
+.edu.live { background:linear-gradient(90deg, rgba(255,107,53,.06), transparent 70%); }
+.edu.live .school { color:var(--fire); }
+.edu.live .when {
+  color:var(--fire); display:inline-flex; align-items:center;
+  gap:.4rem; justify-self:end;
+}
+.edu.live .when::before {
+  content:''; width:6px; height:6px; border-radius:50%;
+  background:var(--fire); box-shadow:0 0 8px var(--fire);
+  animation:pulse 2s ease-in-out infinite;
+}
+.edu .blurb {
+  grid-column:2/-1; padding-top:.5rem;
+  font-family:var(--serif); font-size:.95rem; color:var(--ink-2);
+  line-height:1.5; font-variation-settings:"opsz" 18;
+}
+
+/* ── Certs ───────────────────────────────────────────────── */
+.certs {
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  gap:1px; background:var(--line);
+  border-block:1px solid var(--line);
+}
+.cert { background:var(--bg); padding:1.2rem 1.4rem; transition:background .3s; }
+.cert:hover { background:var(--bg-2); }
+.cert .name {
+  font-family:var(--serif); font-size:1.05rem; color:var(--ink);
+  font-variation-settings:"opsz" 24; margin-bottom:.3rem;
+}
+.cert .by { font-family:var(--mono); font-size:.72rem; color:var(--ink-3);
+  letter-spacing:.1em; text-transform:uppercase; }
+
+/* ── Languages ───────────────────────────────────────────── */
+.langs { display:flex; gap:3rem; flex-wrap:wrap; }
+.lang { flex:0 1 280px; }
+.lang .l-name {
+  font-family:var(--serif); font-style:italic; font-size:1.6rem;
+  color:var(--ink); margin-bottom:.5rem;
+  font-variation-settings:"opsz" 36;
+}
+.lang .l-level {
+  font-family:var(--mono); font-size:.78rem; color:var(--ink-2);
+  letter-spacing:.05em;
+}
+.lang .bar {
+  margin-top:.8rem; height:2px; background:var(--line); border-radius:2px;
+  overflow:hidden;
+}
+.lang .bar > div {
+  height:100%; background:linear-gradient(90deg, var(--fire), var(--cyan));
+}
+
+/* ── Footer / CTA final ──────────────────────────────────── */
+.outro {
+  padding:clamp(5rem, 10vw, 8rem) 0 4rem;
+  border-top:1px solid var(--line);
+  position:relative;
+}
+.outro h2 {
+  font-family:var(--serif); font-style:italic; font-weight:300;
+  font-size:clamp(2.5rem, 8vw, 6rem); line-height:1; letter-spacing:-.03em;
+  font-variation-settings:"opsz" 144, "SOFT" 70;
+  margin-bottom:2.5rem; max-width:900px;
+}
+.outro h2 .underline {
+  background:linear-gradient(120deg, var(--fire), var(--cyan));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.outro .links { display:flex; gap:2rem; flex-wrap:wrap; margin-top:1.5rem; }
+.outro .links a {
+  font-family:var(--mono); font-size:.85rem; color:var(--ink);
+  text-decoration:none; border-bottom:1px solid var(--line-2);
+  padding-bottom:.2rem; transition:all .3s;
+}
+.outro .links a:hover { color:var(--fire); border-color:var(--fire); }
+.signature {
+  display:flex; justify-content:space-between; align-items:flex-end;
+  margin-top:5rem; padding-top:2rem; border-top:1px solid var(--line);
+  font-family:var(--mono); font-size:.72rem; letter-spacing:.1em;
+  color:var(--ink-3); text-transform:uppercase; flex-wrap:wrap; gap:1rem;
+}
+.signature .colophon { max-width:400px; }
+
+/* ── Floating QA console ─────────────────────────────────── */
+.console {
+  position:fixed; bottom:1.5rem; right:1.5rem;
+  width:280px; background:rgba(10,10,12,.85);
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  border:1px solid var(--line-2);
+  border-radius:8px; padding:.85rem 1rem;
+  font-family:var(--mono); font-size:.7rem;
+  z-index:5000; pointer-events:none;
+  box-shadow:0 20px 40px rgba(0,0,0,.4);
+}
+.console .title {
+  display:flex; align-items:center; gap:.5rem;
+  color:var(--ink-3); padding-bottom:.6rem; margin-bottom:.6rem;
+  border-bottom:1px solid var(--line);
+  text-transform:uppercase; letter-spacing:.12em; font-size:.62rem;
+}
+.console .title::before {
+  content:''; width:8px; height:8px; border-radius:50%;
+  background:var(--green); box-shadow:0 0 6px var(--green);
+}
+.console .lines { display:flex; flex-direction:column; gap:.35rem; min-height:80px; }
+.console .line {
+  color:var(--ink-2); opacity:0; transform:translateY(4px);
+  transition:opacity .4s, transform .4s; line-height:1.4;
+}
+.console .line.in { opacity:1; transform:translateY(0); }
+.console .line .t { color:var(--ink-3); margin-right:.4rem; }
+.console .line .ok { color:var(--green); }
+.console .line .info { color:var(--cyan); }
+.console .line .warn { color:var(--fire); }
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 980px) {
+  .metrics { grid-template-columns:repeat(2, 1fr); }
+  .stack-cat { grid-column:span 12; }
+  .exp { grid-template-columns:1fr; gap:1rem; }
+  .edu { grid-template-columns:1fr; gap:.5rem; }
+  .edu .when { text-align:left; }
+  .edu .blurb { grid-column:1; }
+  .topbar .meta-right { display:none; }
+  .console { display:none; }
+}
+@media (max-width:560px) {
+  .hero h1 { font-size:clamp(3rem, 18vw, 6rem); }
+  .langs { gap:1.5rem; }
+  .cta-row { gap:.6rem; }
+}
+
+/* ── Reveal on load ──────────────────────────────────────── */
+.reveal { opacity:0; transform:translateY(20px); transition:opacity .9s ease, transform .9s ease; }
+.reveal.in { opacity:1; transform:translateY(0); }
+
+/* ── Print ───────────────────────────────────────────────── */
+@media print {
+  body::before, body::after, .console, .topbar { display:none !important; }
+  body { background:#fff; color:#000; }
+  .hero, section { padding:1.2rem 0; break-inside:avoid; }
+  .metric, .edu, .cert { background:#fff !important; }
+  * { color:#000 !important; }
+  a { color:#000 !important; text-decoration:underline; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Topbar ───────────────────────────────────────────── -->
+<div class="topbar">
+  <span class="status"><span class="dot"></span>Available · Senior QA / SDET</span>
+  <div class="meta-right">
+    <span>Vol. 09</span>
+    <span>Quality Engineering Manifesto</span>
+    <span>BR · 2026</span>
+  </div>
+</div>
+
+<div class="shell">
+
+  <!-- ── Hero ──────────────────────────────────────────── -->
+  <header class="hero">
+    <div class="eyebrow reveal">Currículo · Curriculum Vitæ</div>
+    <h1 class="reveal">
+      Jefferson<br>
+      <span class="stroke">Almeida</span> <span class="ampersand">&amp;</span><br>
+      a obsessão pela <em style="font-style:italic;">qualidade.</em>
+    </h1>
+    <div class="subtitle reveal">
+      <span>Senior QA Engineer</span><span class="pipe">·</span>
+      <span>SDET</span><span class="pipe">·</span>
+      <span>Quality Engineering</span><span class="pipe">·</span>
+      <span>Web · API · Mobile</span>
+    </div>
+    <p class="lead reveal">
+      Nove anos construindo <em>frameworks de automação</em> em produtos
+      de alta criticidade — financeiro, farmacêutico, varejo digital.
+      Menos releases instáveis. Menos bugs em produção.
+      Mais confiança no <em>deploy</em>.
+    </p>
+    <div class="cta-row reveal">
+      <a class="cta primary" href="mailto:jeffersonalmeidajna2@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l9 6 9-6M3 8v10a2 2 0 002 2h14a2 2 0 002-2V8M3 8l2-2h14l2 2"/></svg>
+        Trabalhar comigo
+      </a>
+      <a class="cta" href="https://www.linkedin.com/in/jeff-almeida-eqa/" target="_blank" rel="noopener">
+        LinkedIn
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+      </a>
+      <a class="cta" href="tel:+5531989688098">+55 (31) 98968-8098</a>
+    </div>
+  </header>
+
+  <!-- ── Manifesto ─────────────────────────────────────── -->
+  <section class="manifesto">
+    <div class="section-head">
+      <div>
+        <div class="section-num">§ 01 · Manifesto</div>
+        <h2 class="section-title"><span class="roman">O que é</span> qualidade<span class="roman">.</span></h2>
+      </div>
+      <div class="section-rule"></div>
+    </div>
+    <p>
+      <span class="dropcap">Q</span>ualidade não é um departamento — é uma
+      <strong>decisão de arquitetura</strong>. É <em>shift left</em> antes do bug existir,
+      é o framework que escala junto com o produto, é o pipeline que falha rápido
+      pra que ninguém mais falhe lento.
+    </p>
+    <p>
+      Construo <strong>sistemas de teste</strong> que tornam releases previsíveis em
+      ambientes de microsserviços. Atuo próximo a desenvolvedores, POs e arquitetura,
+      desenhando a estratégia de qualidade do produto antes que o primeiro commit aconteça.
+      Hoje, em especialização em <em>IA aplicada a Quality Engineering</em> — agentes,
+      LLMs, geração automatizada de casos e análise inteligente de falhas.
+    </p>
+  </section>
+
+  <!-- ── Metrics ───────────────────────────────────────── -->
+  <section style="padding-top:0;">
+    <div class="metrics">
+      <div class="metric">
+        <div class="label">Anos no jogo</div>
+        <div class="value"><span data-count="9">0</span></div>
+        <div class="desc">Atuação contínua em QA & automação desde 2017.</div>
+      </div>
+      <div class="metric">
+        <div class="label">Tempo de regressão</div>
+        <div class="value"><span class="neg">−</span><span data-count="87">0</span><span class="unit">%</span></div>
+        <div class="desc">De 5h para 40min com paralelismo e refatoração.</div>
+      </div>
+      <div class="metric">
+        <div class="label">Cobertura ampliada</div>
+        <div class="value">35<span class="unit">→</span><span data-count="80">0</span><span class="unit">%</span></div>
+        <div class="desc">Web, API e Mobile cobertos no mesmo framework.</div>
+      </div>
+      <div class="metric">
+        <div class="label">Setores críticos</div>
+        <div class="value"><span data-count="4">0</span></div>
+        <div class="desc">Financeiro, farmacêutico, varejo digital e bancário.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Stack ─────────────────────────────────────────── -->
+  <section>
+    <div class="section-head">
+      <div>
+        <div class="section-num">§ 02 · Stack</div>
+        <h2 class="section-title"><span class="roman">Ferramental</span> de combate<span class="roman">.</span></h2>
+      </div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="stack-grid">
+      <div class="stack-cat">
+        <div class="name">Automação · Web & E2E</div>
+        <div class="items">
+          <span class="tag">Playwright</span>
+          <span class="tag">Cypress</span>
+          <span class="tag">Selenium WebDriver</span>
+          <span class="tag">Robot Framework</span>
+          <span class="tag">Page Object</span>
+          <span class="tag">Cross-browser</span>
+          <span class="tag">Paralelismo</span>
+        </div>
+      </div>
+      <div class="stack-cat">
+        <div class="name">API · Mobile · Performance</div>
+        <div class="items">
+          <span class="tag">Rest Assured</span>
+          <span class="tag">Postman</span>
+          <span class="tag">Newman</span>
+          <span class="tag">RequestsLibrary</span>
+          <span class="tag">Appium</span>
+          <span class="tag">Android · iOS</span>
+          <span class="tag">K6</span>
+          <span class="tag">JMeter</span>
+        </div>
+      </div>
+      <div class="stack-cat">
+        <div class="name">Linguagens</div>
+        <div class="items">
+          <span class="tag">TypeScript</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Python</span>
+          <span class="tag">Java</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">Cucumber/Gherkin</span>
+          <span class="tag">Behave</span>
+          <span class="tag">SQL</span>
+        </div>
+      </div>
+      <div class="stack-cat">
+        <div class="name">CI/CD · DevOps · Dados</div>
+        <div class="items">
+          <span class="tag">Azure DevOps</span>
+          <span class="tag">Jenkins</span>
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">GitLab CI</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Git</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">Oracle</span>
+        </div>
+      </div>
+      <div class="stack-cat">
+        <div class="name">Práticas</div>
+        <div class="items">
+          <span class="tag">Quality Engineering</span>
+          <span class="tag">Shift Left</span>
+          <span class="tag">BDD · TDD</span>
+          <span class="tag">Scrum · Kanban</span>
+          <span class="tag">Code Review</span>
+          <span class="tag">Mentoria</span>
+        </div>
+      </div>
+      <div class="stack-cat">
+        <div class="name">Emergente · IA aplicada a QE</div>
+        <div class="items">
+          <span class="tag hot">LangChain</span>
+          <span class="tag hot">RAG</span>
+          <span class="tag hot">OpenAI · Hugging Face</span>
+          <span class="tag hot">Llama · Mistral</span>
+          <span class="tag hot">Agentes Autônomos</span>
+          <span class="tag hot">Test Generation</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Experiência ───────────────────────────────────── -->
+  <section>
+    <div class="section-head">
+      <div>
+        <div class="section-num">§ 03 · Trajetória</div>
+        <h2 class="section-title"><span class="roman">Onde a</span> qualidade <span class="roman">foi construída.</span></h2>
+      </div>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="exp-list">
+
+      <article class="exp">
+        <div class="when">
+          Set/2022 — <span class="now">Now</span>
+        </div>
+        <div>
+          <div class="role">Senior QA Engineer</div>
+          <div class="company">DOMVS iT</div>
+          <div class="desc">
+            Produtos farmacêuticos e financeiros de alta criticidade,
+            arquitetura de microsserviços, entregas contínuas.
+          </div>
+          <ul>
+            <li>Liderei a evolução do framework Web/API/Mobile, ampliando cobertura
+              <span class="num">de 35% para 80%</span> e reduzindo a regressão
+              <span class="num">de 5h para 40min</span> com paralelismo,
+              <b>Page Object</b> e otimização de seletores.</li>
+            <li>Integrei suítes a pipelines CI/CD em <b>Azure DevOps, Jenkins
+              e GitHub Actions</b> com <b>quality gates</b> em smoke,
+              regressão e contrato — prevenindo deploys instáveis em produção.</li>
+            <li>Implementei <b>Shift Left e BDD</b> com POs e devs, antecipando
+              defeitos e reduzindo retrabalho em <span class="num">~40%</span>.</li>
+            <li>Conduzi performance com <b>JMeter e K6</b>, identificando gargalos
+              críticos e suportando decisões de capacidade junto à arquitetura.</li>
+            <li>Mentorei <span class="num">4 QAs</span> em automação, code review
+              e definição de estratégia de testes em squad.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="exp">
+        <div class="when">Mar/2020 — Set/2022</div>
+        <div>
+          <div class="role">Senior QA Engineer</div>
+          <div class="company">SONDA</div>
+          <div class="desc">
+            Projetos financeiros de alta criticidade,
+            squads ágeis com automação Web, API e Mobile.
+          </div>
+          <ul>
+            <li>Estruturei do zero o framework escalável com <b>Cypress, Robot,
+              Selenium, Rest Assured e Appium</b>, padronizando práticas em
+              <span class="num">5 squads ágeis</span>.</li>
+            <li>Reduzi regressão <span class="num">de 6h para 1h30</span> com
+              execução paralela e modelagem <b>data-driven</b> com keywords reutilizáveis.</li>
+            <li>Automatizei validações de <b>APIs REST</b> com massa dinâmica,
+              integrando ao Azure DevOps/Jenkins.</li>
+            <li>Implementei <b>BDD com Cucumber/Gherkin</b> com POs e devs,
+              formalizando critérios de aceitação antes do desenvolvimento.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="exp">
+        <div class="when">Jan/2019 — Jan/2020</div>
+        <div>
+          <div class="role">Analista de Qualidade · QA Automation</div>
+          <div class="company">ROX Partner</div>
+          <div class="desc">Projetos financeiros e bancários — Web, API e Mobile.</div>
+          <ul>
+            <li>Desenvolvi frameworks modulares com <b>Selenium, Cypress, Robot
+              Framework, Java, Python e Postman</b> com forte ênfase em reuso e manutenibilidade.</li>
+            <li>Integrei suítes a pipelines <b>Jenkins/GitLab CI</b>, aumentando
+              frequência e velocidade do feedback de qualidade.</li>
+            <li>Implementei <b>BDD com Behave/Cucumber</b> e estruturei relatórios
+              técnicos para decisões de <b>go/no-go</b> de release.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="exp">
+        <div class="when">Jan/2017 — Dez/2018</div>
+        <div>
+          <div class="role">Analista de Testes</div>
+          <div class="company">Via · Via Varejo SA</div>
+          <div class="desc">
+            E-commerce de larga escala — fluxos críticos de checkout
+            e integrações distribuídas.
+          </div>
+          <ul>
+            <li>Automatizei testes Web e API com <b>Selenium, Robot Framework,
+              Python, Cypress, Jest, Postman e Rest Assured</b> em fluxos com alto volume transacional.</li>
+            <li>Conduzi testes funcionais, regressão e compatibilidade <b>multi-browser</b>.</li>
+            <li>Apoiei <b>migração de sistemas legados para microsserviços</b>,
+              validando integrações distribuídas e consistência de dados.</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ── Education ─────────────────────────────────────── -->
+  <section>
+    <div class="section-head">
+      <div>
+        <div class="section-num">§ 04 · Formação</div>
+        <h2 class="section-title"><span class="roman">Aprendizado</span> contínuo<span class="roman">.</span></h2>
+      </div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="edu-grid">
+      <div class="edu live">
+        <div class="school">Asimov Academy</div>
+        <div class="degree">Engenheiro de Agentes de IA</div>
+        <div class="when">Nov/2025 — Nov/2026 · Em curso</div>
+        <div class="blurb">
+          Desenvolvimento de agentes inteligentes com Python e LLMs · LangChain · RAG ·
+          OpenAI · Hugging Face · Llama · Mistral. Aplicação direta em <em>Quality Engineering</em>:
+          geração automatizada de testes, análise inteligente de falhas, automação de
+          validações e otimização de pipelines.
+        </div>
+      </div>
+      <div class="edu">
+        <div class="school">Faculdade Anhanguera</div>
+        <div class="degree">Pós-graduação · Eng. de Software (Qualidade & Testes)</div>
+        <div class="when">2023</div>
+      </div>
+      <div class="edu">
+        <div class="school">EBAC</div>
+        <div class="degree">Engenharia de Qualidade de Software</div>
+        <div class="when">2023</div>
+      </div>
+      <div class="edu">
+        <div class="school">Faculdade Pitágoras</div>
+        <div class="degree">Graduação · Ciência da Computação</div>
+        <div class="when">2018</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Certs ─────────────────────────────────────────── -->
+  <section>
+    <div class="section-head">
+      <div>
+        <div class="section-num">§ 05 · Certificações</div>
+        <h2 class="section-title"><span class="roman">Cursos</span> &amp; especializações<span class="roman">.</span></h2>
+      </div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="certs">
+      <div class="cert"><div class="name">Automação Web com Playwright e TypeScript</div><div class="by">Udemy</div></div>
+      <div class="cert"><div class="name">Automação de Testes Web com Cypress</div><div class="by">Udemy</div></div>
+      <div class="cert"><div class="name">Automação de Testes de API com Cypress e Postman</div><div class="by">Udemy</div></div>
+      <div class="cert"><div class="name">DevOps para QA · CI/CD com Azure DevOps</div><div class="by">Alura</div></div>
+      <div class="cert"><div class="name">Testes de Performance com K6 e JMeter</div><div class="by">EBAC</div></div>
+      <div class="cert"><div class="name">BDD com Cucumber e JavaScript</div><div class="by">Alura</div></div>
+    </div>
+  </section>
+
+  <!-- ── Languages ─────────────────────────────────────── -->
+  <section>
+    <div class="section-head">
+      <div>
+        <div class="section-num">§ 06 · Idiomas</div>
+        <h2 class="section-title"><span class="roman">Comunicação</span> técnica<span class="roman">.</span></h2>
+      </div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="langs">
+      <div class="lang">
+        <div class="l-name">Inglês <em style="font-style:italic; color:var(--ink-3); font-size:.7em;">— B1/B2</em></div>
+        <div class="l-level">Leitura técnica avançada · Escrita e comunicação intermediárias</div>
+        <div class="bar"><div style="width:65%"></div></div>
+      </div>
+      <div class="lang">
+        <div class="l-name">Espanhol <em style="font-style:italic; color:var(--ink-3); font-size:.7em;">— A2</em></div>
+        <div class="l-level">Básico</div>
+        <div class="bar"><div style="width:25%"></div></div>
+      </div>
+      <div class="lang">
+        <div class="l-name">Português <em style="font-style:italic; color:var(--ink-3); font-size:.7em;">— Nativo</em></div>
+        <div class="l-level">Brasil · Comunicação plena</div>
+        <div class="bar"><div style="width:100%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Outro ─────────────────────────────────────────── -->
+  <section class="outro">
+    <div class="section-num" style="margin-bottom:1.5rem;">§ Fim · Contato</div>
+    <h2>
+      Vamos construir <span class="underline">qualidade</span> juntos<em style="font-style:italic; color:var(--ink-3);">?</em>
+    </h2>
+    <p style="font-family:var(--serif); font-size:1.25rem; color:var(--ink-2); max-width:680px; font-variation-settings:'opsz' 28; line-height:1.5;">
+      Estou disponível para posições <em style="font-style:italic; color:var(--fire);">Senior QA / SDET / QE Lead</em>
+      — remoto Brasil ou internacional. Conversamos?
+    </p>
+    <div class="links">
+      <a href="mailto:jeffersonalmeidajna2@gmail.com">jeffersonalmeidajna2@gmail.com</a>
+      <a href="tel:+5531989688098">+55 (31) 98968-8098</a>
+      <a href="https://www.linkedin.com/in/jeff-almeida-eqa/" target="_blank" rel="noopener">linkedin.com/in/jeff-almeida-eqa</a>
+    </div>
+    <div class="signature">
+      <span>Jefferson J. Almeida · Ponte Nova, MG · Brasil</span>
+      <span class="colophon">Tipografia: Fraunces, Manrope, JetBrains Mono. Sem dependências externas.</span>
+    </div>
+  </section>
+
+</div>
+
+<!-- ── Floating QA console ───────────────────────────────── -->
+<aside class="console" aria-hidden="true">
+  <div class="title">qa.live · output</div>
+  <div class="lines" id="qaLines"></div>
+</aside>
+
+<script>
+/* ── Reveal on load ───────────────────────────────────── */
+window.addEventListener('load', () => {
+  const els = document.querySelectorAll('.reveal');
+  els.forEach((el, i) => setTimeout(() => el.classList.add('in'), 120 + i * 140));
+});
+
+/* ── Count-up metrics ─────────────────────────────────── */
+const counters = document.querySelectorAll('[data-count]');
+const animateCount = (el) => {
+  const target = +el.dataset.count;
+  const duration = 1400;
+  const start = performance.now();
+  const tick = (now) => {
+    const t = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - t, 3);
+    el.textContent = Math.round(target * eased);
+    if (t < 1) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+};
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { animateCount(e.target); io.unobserve(e.target); }
+  });
+}, { threshold: 0.5 });
+counters.forEach(c => io.observe(c));
+
+/* ── Floating QA console ──────────────────────────────── */
+const logs = [
+  { t: 'PASS',  k: 'ok',   m: 'login.spec.ts · 14 of 14 passed' },
+  { t: 'INFO',  k: 'info', m: 'pipeline → smoke: green' },
+  { t: 'PASS',  k: 'ok',   m: 'api/orders · contract verified' },
+  { t: 'INFO',  k: 'info', m: 'parallel workers: 4 active' },
+  { t: 'WARN',  k: 'warn', m: 'flaky retry · checkout.spec' },
+  { t: 'PASS',  k: 'ok',   m: 'mobile · ios + android · regression OK' },
+  { t: 'INFO',  k: 'info', m: 'k6 · p95 latency 142ms' },
+  { t: 'PASS',  k: 'ok',   m: 'shift-left · 0 critical bugs' },
+  { t: 'INFO',  k: 'info', m: 'agent.qe · generating tests…' },
+  { t: 'PASS',  k: 'ok',   m: 'deploy ready · go/no-go: GO' },
+];
+const lines = document.getElementById('qaLines');
+const time = () => {
+  const d = new Date();
+  return d.toTimeString().slice(0,8);
+};
+let idx = 0;
+const pushLog = () => {
+  if (!lines) return;
+  const log = logs[idx % logs.length]; idx++;
+  const div = document.createElement('div');
+  div.className = 'line';
+  div.innerHTML = `<span class="t">${time()}</span><span class="${log.k}">[${log.t}]</span> ${log.m}`;
+  lines.appendChild(div);
+  requestAnimationFrame(() => div.classList.add('in'));
+  while (lines.children.length > 4) lines.removeChild(lines.firstChild);
+};
+setTimeout(() => { pushLog(); setInterval(pushLog, 2400); }, 1800);
+
+/* ── Easter egg ───────────────────────────────────────── */
+console.log(
+  '%c\n' +
+  '   ╔══════════════════════════════════════════╗\n' +
+  '   ║   JEFFERSON ALMEIDA · SR QA / SDET       ║\n' +
+  '   ║   Quality is not a department.           ║\n' +
+  '   ║   It\'s an architectural decision.        ║\n' +
+  '   ╚══════════════════════════════════════════╝\n',
+  'color:#ff6b35; font-family:monospace; font-size:12px; line-height:1.4;'
+);
+console.log('%c→ jeffersonalmeidajna2@gmail.com', 'color:#4dd4ff; font-family:monospace;');
+console.log('%c→ linkedin.com/in/jeff-almeida-eqa', 'color:#4dd4ff; font-family:monospace;');
+</script>
+</body>
+</html>
