@@ -466,6 +466,53 @@ section { padding:clamp(4rem, 9vw, 7rem) 0; position:relative; }
 .reveal { opacity:0; transform:translateY(20px); transition:opacity .9s ease, transform .9s ease; }
 .reveal.in { opacity:1; transform:translateY(0); }
 
+/* ── Scroll progress ─────────────────────────────────────── */
+#progress { position:fixed; top:0; left:0; height:2px; width:0%; background:linear-gradient(90deg, var(--fire), var(--cyan)); z-index:9999; pointer-events:none; transition:width .05s linear; }
+
+/* ── Custom cursor ───────────────────────────────────────── */
+.cursor, .cursor-ring { position:fixed; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); display:none; }
+.cursor { width:8px; height:8px; background:var(--ink); mix-blend-mode:difference; z-index:9999; }
+.cursor-ring { width:36px; height:36px; border:1px solid rgba(255,107,53,.55); z-index:9998; transition:transform .18s cubic-bezier(.2,.8,.2,1), border-color .2s; }
+.cursor.big { transform:translate(-50%,-50%) scale(2.8); }
+.cursor-ring.big { transform:translate(-50%,-50%) scale(.45); border-color:var(--fire); }
+.has-custom-cursor * { cursor:none !important; }
+.has-custom-cursor .cursor, .has-custom-cursor .cursor-ring { display:block; }
+
+/* ── Mouse spotlight ─────────────────────────────────────── */
+.spotlight { position:fixed; pointer-events:none; z-index:0; width:700px; height:700px; border-radius:50%; background:radial-gradient(circle, rgba(255,107,53,.055) 0%, transparent 70%); transform:translate(-50%,-50%); left:50%; top:-30%; transition:left .5s ease, top .5s ease; }
+
+/* ── Glitch ──────────────────────────────────────────────── */
+.glitch-wrap { position:relative; display:inline-block; }
+.glitch-wrap::before, .glitch-wrap::after { content:attr(data-text); position:absolute; top:0; left:0; width:100%; -webkit-text-stroke:0; opacity:0; font-style:inherit; }
+.glitch-wrap::before { color:var(--cyan); }
+.glitch-wrap::after  { color:var(--fire); }
+.glitch-wrap.glitch::before { animation:glitch-a .48s steps(1) forwards; }
+.glitch-wrap.glitch::after  { animation:glitch-b .48s steps(1) forwards; }
+@keyframes glitch-a {
+  0%      { opacity:0; }
+  20%,40% { opacity:.75; clip-path:polygon(0 15%,100% 15%,100% 40%,0 40%); transform:translate(-6px,2px); }
+  60%     { clip-path:polygon(0 60%,100% 60%,100% 80%,0 80%); transform:translate(5px,-3px); }
+  80%     { clip-path:polygon(0 35%,100% 35%,100% 55%,0 55%); transform:translate(-3px,0); }
+  100%    { opacity:0; transform:none; }
+}
+@keyframes glitch-b {
+  0%      { opacity:0; }
+  25%,50% { opacity:.65; clip-path:polygon(0 50%,100% 50%,100% 70%,0 70%); transform:translate(6px,-2px); }
+  75%     { clip-path:polygon(0 20%,100% 20%,100% 45%,0 45%); transform:translate(-4px,2px); }
+  100%    { opacity:0; transform:none; }
+}
+
+/* ── Marquee strip ───────────────────────────────────────── */
+.marquee-wrap { overflow:hidden; border-block:1px solid var(--line); padding:.85rem 0; background:var(--bg-2); position:relative; z-index:1; }
+.marquee-track { display:flex; gap:2.5rem; width:max-content; animation:marquee 36s linear infinite; font-family:var(--mono); font-size:.72rem; color:var(--ink-3); letter-spacing:.12em; text-transform:uppercase; white-space:nowrap; }
+.marquee-wrap:hover .marquee-track { animation-play-state:paused; }
+.marquee-track .m { color:var(--fire); }
+@keyframes marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+
+/* ── Typewriter cursor ───────────────────────────────────── */
+.type-cursor { display:inline-block; width:2px; height:.85em; background:var(--fire); margin-left:2px; animation:blink .85s step-end infinite; vertical-align:text-bottom; }
+@keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0; } }
+
 /* ── Print ───────────────────────────────────────────────── */
 @media print {
   body::before, body::after, .console, .topbar { display:none !important; }
@@ -478,6 +525,12 @@ section { padding:clamp(4rem, 9vw, 7rem) 0; position:relative; }
 </style>
 </head>
 <body>
+
+<!-- ── Effects layer ────────────────────────────────────── -->
+<div id="progress"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="spotlight" id="spotlight"></div>
 
 <!-- ── Topbar ───────────────────────────────────────────── -->
 <div class="topbar">
@@ -496,7 +549,7 @@ section { padding:clamp(4rem, 9vw, 7rem) 0; position:relative; }
     <div class="eyebrow reveal">Currículo · Curriculum Vitæ</div>
     <h1 class="reveal">
       Jefferson<br>
-      <span class="stroke">Almeida</span> <span class="ampersand">&amp;</span><br>
+      <span class="stroke glitch-wrap" data-text="Almeida">Almeida</span> <span class="ampersand">&amp;</span><br>
       a obsessão pela <em style="font-style:italic;">qualidade.</em>
     </h1>
     <div class="subtitle reveal">
@@ -523,6 +576,13 @@ section { padding:clamp(4rem, 9vw, 7rem) 0; position:relative; }
       <a class="cta" href="tel:+5531989688098">+55 (31) 98968-8098</a>
     </div>
   </header>
+
+  <!-- ── Marquee strip ───────────────────────────────────── -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Playwright</span><span class="m">·</span><span>Cypress</span><span class="m">·</span><span>Selenium</span><span class="m">·</span><span>Robot Framework</span><span class="m">·</span><span>Appium</span><span class="m">·</span><span>Rest Assured</span><span class="m">·</span><span>K6</span><span class="m">·</span><span>JMeter</span><span class="m">·</span><span>TypeScript</span><span class="m">·</span><span>Python</span><span class="m">·</span><span>Java</span><span class="m">·</span><span>Azure DevOps</span><span class="m">·</span><span>Jenkins</span><span class="m">·</span><span>Docker</span><span class="m">·</span><span>BDD</span><span class="m">·</span><span>Shift Left</span><span class="m">·</span><span>Quality Engineering</span><span class="m">·</span><span>LangChain</span><span class="m">·</span><span>RAG</span><span class="m">·</span><span>SDET</span><span class="m">·</span><span>Playwright</span><span class="m">·</span><span>Cypress</span><span class="m">·</span><span>Selenium</span><span class="m">·</span><span>Robot Framework</span><span class="m">·</span><span>Appium</span><span class="m">·</span><span>Rest Assured</span><span class="m">·</span><span>K6</span><span class="m">·</span><span>JMeter</span><span class="m">·</span><span>TypeScript</span><span class="m">·</span><span>Python</span><span class="m">·</span><span>Java</span><span class="m">·</span><span>Azure DevOps</span><span class="m">·</span><span>Jenkins</span><span class="m">·</span><span>Docker</span><span class="m">·</span><span>BDD</span><span class="m">·</span><span>Shift Left</span><span class="m">·</span><span>Quality Engineering</span><span class="m">·</span><span>LangChain</span><span class="m">·</span><span>RAG</span><span class="m">·</span><span>SDET</span><span class="m">·</span>
+    </div>
+  </div>
 
   <!-- ── Manifesto ─────────────────────────────────────── -->
   <section class="manifesto">
@@ -937,6 +997,99 @@ const pushLog = () => {
   while (lines.children.length > 4) lines.removeChild(lines.firstChild);
 };
 setTimeout(() => { pushLog(); setInterval(pushLog, 2400); }, 1800);
+
+/* ── Scroll progress ──────────────────────────────────── */
+const progressBar = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+  progressBar.style.width = Math.min(pct * 100, 100) + '%';
+}, { passive:true });
+
+/* ── Custom cursor ────────────────────────────────────── */
+if (window.matchMedia('(pointer:fine)').matches) {
+  document.body.classList.add('has-custom-cursor');
+  const cur  = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = window.innerWidth / 2, my = window.innerHeight / 2, rx = mx, ry = my;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; }, { passive:true });
+  const moveCursor = () => {
+    cur.style.left = mx + 'px'; cur.style.top = my + 'px';
+    rx += (mx - rx) * .12; ry += (my - ry) * .12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(moveCursor);
+  };
+  requestAnimationFrame(moveCursor);
+  document.querySelectorAll('a, .cta, .metric, .cert, .tag').forEach(el => {
+    el.addEventListener('mouseenter', () => { cur.classList.add('big'); ring.classList.add('big'); });
+    el.addEventListener('mouseleave', () => { cur.classList.remove('big'); ring.classList.remove('big'); });
+  });
+}
+
+/* ── Spotlight follow ─────────────────────────────────── */
+const spot = document.getElementById('spotlight');
+document.addEventListener('mousemove', e => {
+  spot.style.left = e.clientX + 'px'; spot.style.top = e.clientY + 'px';
+}, { passive:true });
+
+/* ── 3D tilt on metric & cert cards ──────────────────── */
+document.querySelectorAll('.metric, .cert').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - .5;
+    const y = (e.clientY - r.top) / r.height - .5;
+    card.style.transition = 'transform .1s ease';
+    card.style.transform  = `perspective(700px) rotateX(${-y * 10}deg) rotateY(${x * 10}deg) scale(1.04)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transition = 'transform .7s cubic-bezier(.2,.8,.2,1), background .4s ease';
+    card.style.transform  = '';
+  });
+});
+
+/* ── Magnetic CTAs ────────────────────────────────────── */
+document.querySelectorAll('.cta').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const r = btn.getBoundingClientRect();
+    const x = (e.clientX - r.left - r.width  / 2) * .22;
+    const y = (e.clientY - r.top  - r.height / 2) * .22;
+    btn.style.transition = 'transform .12s ease';
+    btn.style.transform  = `translate(${x}px,${y - 2}px)`;
+  });
+  btn.addEventListener('mouseleave', () => {
+    btn.style.transition = 'transform .6s cubic-bezier(.2,.8,.2,1)';
+    btn.style.transform  = '';
+  });
+});
+
+/* ── Glitch on "Almeida" ──────────────────────────────── */
+const glitchEl = document.querySelector('.glitch-wrap');
+const scheduleGlitch = () => {
+  if (!glitchEl) return;
+  glitchEl.classList.add('glitch');
+  setTimeout(() => glitchEl.classList.remove('glitch'), 500);
+  setTimeout(scheduleGlitch, 4500 + Math.random() * 5500);
+};
+setTimeout(scheduleGlitch, 3200);
+
+/* ── Typewriter eyebrow ───────────────────────────────── */
+const eyebrow = document.querySelector('.hero .eyebrow');
+if (eyebrow) {
+  const text = eyebrow.textContent.trim();
+  eyebrow.innerHTML = '';
+  const tc = document.createElement('span');
+  tc.className = 'type-cursor';
+  eyebrow.appendChild(tc);
+  let i = 0;
+  const type = () => {
+    if (i < text.length) {
+      tc.insertAdjacentText('beforebegin', text[i++]);
+      setTimeout(type, 38 + Math.random() * 32);
+    } else {
+      setTimeout(() => { tc.style.display = 'none'; }, 1600);
+    }
+  };
+  setTimeout(type, 950);
+}
 
 /* ── Easter egg ───────────────────────────────────────── */
 console.log(
