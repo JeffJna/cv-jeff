@@ -5,26 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jefferson Almeida — Senior QA Engineer & SDET</title>
 <meta name="description" content="Senior QA Engineer com 9 anos em automação Web, API e Mobile. Quality Engineering, Shift Left, IA aplicada a QE.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230a0a0c'/%3E%3Cpath d='M18 42c8-2 11-22 18-22 5 0 5 8 0 8-6 0-5-10 4-10 4 0 7 3 7 7 0 9-14 12-16 21' fill='none' stroke='%23ff6b35' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230d0d10'/%3E%3Cpath d='M18 42c8-2 11-22 18-22 5 0 5 8 0 8-6 0-5-10 4-10 4 0 7 3 7 7 0 9-14 12-16 21' fill='none' stroke='%235E6AD2' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:        #0a0a0c;
-  --bg-2:      #111116;
-  --bg-3:      #16161d;
-  --line:      #25252e;
-  --line-2:    #34343f;
-  --ink:       #f5f5f7;
-  --ink-2:     #a8a8b3;
-  --ink-3:     #6e6e7a;
-  --fire:      #ff6b35;
-  --cyan:      #4dd4ff;
+  --bg:        #0d0d10;
+  --bg-2:      #131318;
+  --bg-3:      #18181f;
+  --line:      #22222a;
+  --line-2:    #2e2e38;
+  --ink:       #f0f0f2;
+  --ink-2:     #9898a8;
+  --ink-3:     #606072;
+  --fire:      #5E6AD2;
+  --cyan:      #8b8ee8;
   --green:     #4ade80;
   --whatsapp:  #25d366;
-  --serif:     'Fraunces', Georgia, serif;
-  --sans:      'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  --serif:     'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --sans:      'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --mono:      'JetBrains Mono', ui-monospace, 'Courier New', monospace;
   --max:       1240px;
   --pad:       clamp(1.25rem, 4vw, 3rem);
@@ -52,8 +52,8 @@ body::before {
 body::after {
   content:''; position:fixed; inset:0;
   background:
-    radial-gradient(900px 600px at 8% -10%, rgba(255,107,53,.13), transparent 60%),
-    radial-gradient(800px 500px at 95% 5%, rgba(77,212,255,.10), transparent 60%),
+    radial-gradient(900px 600px at 8% -10%, rgba(94,106,210,.12), transparent 60%),
+    radial-gradient(800px 500px at 95% 5%, rgba(139,142,232,.08), transparent 60%),
     radial-gradient(1000px 700px at 50% 110%, rgba(74,222,128,.06), transparent 70%);
   pointer-events:none; z-index:0;
 }
@@ -107,8 +107,8 @@ body::after {
   position:absolute; inset:8% -8% auto auto;
   width:min(42vw, 520px); height:min(42vw, 520px);
   background:
-    linear-gradient(90deg, rgba(77,212,255,.16) 1px, transparent 1px),
-    linear-gradient(rgba(255,107,53,.12) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(139,142,232,.14) 1px, transparent 1px),
+    linear-gradient(rgba(94,106,210,.10) 1px, transparent 1px);
   background-size:34px 34px;
   transform:perspective(800px) rotateX(58deg) rotateZ(-18deg);
   opacity:.26; pointer-events:none; filter:blur(.2px);
@@ -122,17 +122,15 @@ body::after {
   content:''; width:32px; height:1px; background:var(--fire);
 }
 .hero h1 {
-  font-family:var(--serif); font-style:italic;
-  font-weight:300;
+  font-family:var(--sans);
+  font-weight:700;
   font-size:clamp(3.5rem, 13vw, 11rem);
   line-height:.92; letter-spacing:-.04em;
   color:var(--ink);
-  font-variation-settings:"opsz" 144, "SOFT" 50;
   margin-bottom:1.2rem;
 }
 .hero h1 .ampersand {
-  color:var(--fire); font-style:italic;
-  font-variation-settings:"opsz" 144;
+  color:var(--fire);
 }
 .hero h1 .stroke {
   -webkit-text-stroke:1.5px var(--ink);
@@ -145,14 +143,12 @@ body::after {
 }
 .hero .subtitle .pipe { color:var(--ink-3); }
 .hero .lead {
-  font-family:var(--serif); font-weight:300;
-  font-size:clamp(1.25rem, 2.4vw, 1.7rem); line-height:1.45;
+  font-family:var(--sans); font-weight:300;
+  font-size:clamp(1.25rem, 2.4vw, 1.7rem); line-height:1.55;
   color:var(--ink-2); max-width:780px; margin-top:2.5rem;
-  font-variation-settings:"opsz" 28;
 }
 .hero .lead em {
-  font-style:italic; color:var(--ink);
-  font-variation-settings:"opsz" 28, "SOFT" 80;
+  font-style:normal; font-weight:500; color:var(--ink);
 }
 
 /* ── CTAs ────────────────────────────────────────────────── */
@@ -207,9 +203,8 @@ section.reveal-section.in { opacity:1; transform:translateY(0); }
   letter-spacing:.18em; color:var(--fire); text-transform:uppercase;
 }
 .section-title {
-  font-family:var(--serif); font-weight:300; font-style:italic;
-  font-size:clamp(2.2rem, 5.5vw, 4.5rem); line-height:1; letter-spacing:-.025em;
-  font-variation-settings:"opsz" 144, "SOFT" 60;
+  font-family:var(--sans); font-weight:600;
+  font-size:clamp(2.2rem, 5.5vw, 4.5rem); line-height:1; letter-spacing:-.03em;
 }
 .section-title .roman { font-style:normal; color:var(--ink); }
 .section-rule {
@@ -218,19 +213,18 @@ section.reveal-section.in { opacity:1; transform:translateY(0); }
 
 /* ── Manifesto ───────────────────────────────────────────── */
 .manifesto p {
-  font-family:var(--serif); font-weight:300;
+  font-family:var(--sans); font-weight:300;
   font-size:clamp(1.25rem, 2.2vw, 1.55rem);
-  line-height:1.55; max-width:880px; color:var(--ink-2);
-  font-variation-settings:"opsz" 36;
+  line-height:1.65; max-width:880px; color:var(--ink-2);
 }
 .manifesto p + p { margin-top:1.4rem; }
-.manifesto strong { color:var(--ink); font-weight:400; }
-.manifesto em { font-style:italic; color:var(--fire); }
+.manifesto strong { color:var(--ink); font-weight:500; }
+.manifesto em { font-style:normal; font-weight:500; color:var(--fire); }
 .manifesto .dropcap {
-  font-family:var(--serif); font-style:italic; font-weight:300;
+  font-family:var(--sans); font-weight:700;
   float:left; font-size:5.5rem; line-height:.85;
-  margin:.15em .15em -.1em 0; color:var(--ink);
-  font-variation-settings:"opsz" 144, "SOFT" 100;
+  margin:.15em .15em -.1em 0; color:var(--fire);
+  border-left:3px solid var(--fire); padding-left:.2em;
 }
 
 /* ── Metrics ─────────────────────────────────────────────── */
@@ -250,16 +244,15 @@ section.reveal-section.in { opacity:1; transform:translateY(0); }
   text-transform:uppercase; color:var(--ink-3); margin-bottom:1rem;
 }
 .metric .value {
-  font-family:var(--serif); font-weight:300;
+  font-family:var(--sans); font-weight:700;
   font-size:clamp(2.6rem, 6vw, 4.8rem);
   line-height:.9; letter-spacing:-.03em;
   color:var(--ink);
-  font-variation-settings:"opsz" 144;
   display:flex; align-items:baseline; gap:.05em;
 }
 .metric .value .unit {
-  font-size:.4em; font-style:italic;
-  color:var(--ink-3); font-variation-settings:"opsz" 36;
+  font-size:.4em; font-weight:400;
+  color:var(--ink-3);
 }
 .metric .value .neg { color:var(--fire); }
 .metric .desc {
@@ -291,15 +284,15 @@ section.reveal-section.in { opacity:1; transform:translateY(0); }
 }
 .tag:hover {
   border-color:var(--cyan); color:var(--cyan);
-  background:rgba(77,212,255,.06);
+  background:rgba(139,142,232,.06);
 }
 .tag.hot {
-  border-color:rgba(255,107,53,.4); color:var(--fire);
-  background:rgba(255,107,53,.05);
+  border-color:rgba(94,106,210,.4); color:var(--fire);
+  background:rgba(94,106,210,.05);
 }
 .tag.hot:hover {
   border-color:var(--fire);
-  background:rgba(255,107,53,.12);
+  background:rgba(94,106,210,.12);
 }
 
 /* ── Experience timeline ─────────────────────────────────── */
@@ -319,11 +312,11 @@ section.reveal-section.in { opacity:1; transform:translateY(0); }
   content:''; position:absolute; left:200px; top:3.05rem;
   width:9px; height:9px; border-radius:50%;
   background:var(--bg); border:1px solid var(--fire);
-  box-shadow:0 0 0 0 rgba(255,107,53,.28);
+  box-shadow:0 0 0 0 rgba(94,106,210,.28);
   transform:translateX(calc(1.5rem - 4px));
   transition:box-shadow .4s ease, background .4s ease;
 }
-.exp:hover::after { background:var(--fire); box-shadow:0 0 0 8px rgba(255,107,53,.12); }
+.exp:hover::after { background:var(--fire); box-shadow:0 0 0 8px rgba(94,106,210,.12); }
 .exp:last-child { border-bottom:1px solid var(--line); }
 .exp .when {
   font-family:var(--mono); font-size:.78rem; color:var(--ink-2);
@@ -337,9 +330,9 @@ section.reveal-section.in { opacity:1; transform:translateY(0); }
   background:var(--green); box-shadow:0 0 8px var(--green);
 }
 .exp .role {
-  font-family:var(--serif); font-weight:300; font-style:italic;
+  font-family:var(--sans); font-weight:600;
   font-size:clamp(1.6rem, 3vw, 2.4rem); line-height:1.1;
-  font-variation-settings:"opsz" 72, "SOFT" 40;
+  letter-spacing:-.02em;
   margin-bottom:.3rem;
 }
 .exp .company {
@@ -348,9 +341,8 @@ section.reveal-section.in { opacity:1; transform:translateY(0); }
   margin-bottom:1.2rem;
 }
 .exp .desc {
-  font-family:var(--serif); font-size:1.05rem; color:var(--ink-2);
-  line-height:1.55; margin-bottom:1.5rem; max-width:680px;
-  font-variation-settings:"opsz" 24;
+  font-family:var(--sans); font-size:1.05rem; color:var(--ink-2);
+  line-height:1.6; margin-bottom:1.5rem; max-width:680px;
 }
 .exp ul { list-style:none; display:flex; flex-direction:column; gap:.7rem; }
 .exp li {
@@ -380,15 +372,15 @@ section.reveal-section.in { opacity:1; transform:translateY(0); }
   letter-spacing:.1em; color:var(--ink-3); text-transform:uppercase;
 }
 .edu .degree {
-  font-family:var(--serif); font-weight:300; font-style:italic;
+  font-family:var(--sans); font-weight:500;
   font-size:clamp(1.15rem, 2vw, 1.5rem); color:var(--ink);
-  font-variation-settings:"opsz" 36;
+  letter-spacing:-.01em;
 }
 .edu .when {
   font-family:var(--mono); font-size:.78rem; color:var(--ink-2);
   text-align:right; letter-spacing:.05em;
 }
-.edu.live { background:linear-gradient(90deg, rgba(255,107,53,.06), transparent 70%); }
+.edu.live { background:linear-gradient(90deg, rgba(94,106,210,.06), transparent 70%); }
 .edu.live .school { color:var(--fire); }
 .edu.live .when {
   color:var(--fire); display:inline-flex; align-items:center;
@@ -401,8 +393,8 @@ section.reveal-section.in { opacity:1; transform:translateY(0); }
 }
 .edu .blurb {
   grid-column:2/-1; padding-top:.5rem;
-  font-family:var(--serif); font-size:.95rem; color:var(--ink-2);
-  line-height:1.5; font-variation-settings:"opsz" 18;
+  font-family:var(--sans); font-size:.95rem; color:var(--ink-2);
+  line-height:1.6;
 }
 
 /* ── Certs ───────────────────────────────────────────────── */
@@ -414,8 +406,8 @@ section.reveal-section.in { opacity:1; transform:translateY(0); }
 .cert { background:var(--bg); padding:1.2rem 1.4rem; transition:background .3s; }
 .cert:hover { background:var(--bg-2); }
 .cert .name {
-  font-family:var(--serif); font-size:1.05rem; color:var(--ink);
-  font-variation-settings:"opsz" 24; margin-bottom:.3rem;
+  font-family:var(--sans); font-size:1.05rem; font-weight:500; color:var(--ink);
+  margin-bottom:.3rem;
 }
 .cert .by { font-family:var(--mono); font-size:.72rem; color:var(--ink-3);
   letter-spacing:.1em; text-transform:uppercase; }
@@ -424,9 +416,9 @@ section.reveal-section.in { opacity:1; transform:translateY(0); }
 .langs { display:flex; gap:3rem; flex-wrap:wrap; }
 .lang { flex:0 1 280px; }
 .lang .l-name {
-  font-family:var(--serif); font-style:italic; font-size:1.6rem;
+  font-family:var(--sans); font-weight:600; font-size:1.6rem;
   color:var(--ink); margin-bottom:.5rem;
-  font-variation-settings:"opsz" 36;
+  letter-spacing:-.02em;
 }
 .lang .l-level {
   font-family:var(--mono); font-size:.78rem; color:var(--ink-2);
@@ -452,14 +444,14 @@ section.reveal-section.in { opacity:1; transform:translateY(0); }
   position:relative;
 }
 .outro h2 {
-  font-family:var(--serif); font-style:italic; font-weight:300;
-  font-size:clamp(2.5rem, 8vw, 6rem); line-height:1; letter-spacing:-.03em;
-  font-variation-settings:"opsz" 144, "SOFT" 70;
+  font-family:var(--sans); font-weight:700;
+  font-size:clamp(2.5rem, 8vw, 6rem); line-height:1; letter-spacing:-.04em;
   margin-bottom:2.5rem; max-width:900px;
 }
 .outro h2 .underline {
   background:linear-gradient(120deg, var(--fire), var(--cyan));
   -webkit-background-clip:text; background-clip:text; color:transparent;
+  letter-spacing:-.02em;
 }
 .outro .links { display:flex; gap:2rem; flex-wrap:wrap; margin-top:1.5rem; }
 .outro .links a {
@@ -569,17 +561,18 @@ section.reveal-section.in { opacity:1; transform:translateY(0); }
 /* ── Scroll progress ─────────────────────────────────────── */
 #progress { position:fixed; top:0; left:0; height:2px; width:0%; background:linear-gradient(90deg, var(--fire), var(--cyan)); z-index:9999; pointer-events:none; transition:width .05s linear; }
 
+
 /* ── Custom cursor ───────────────────────────────────────── */
 .cursor, .cursor-ring { position:fixed; border-radius:50%; pointer-events:none; transform:translate(-50%,-50%); display:none; }
 .cursor { width:8px; height:8px; background:var(--ink); mix-blend-mode:difference; z-index:9999; }
-.cursor-ring { width:36px; height:36px; border:1px solid rgba(255,107,53,.55); z-index:9998; transition:transform .18s cubic-bezier(.2,.8,.2,1), border-color .2s; }
+.cursor-ring { width:36px; height:36px; border:1px solid rgba(94,106,210,.55); z-index:9998; transition:transform .18s cubic-bezier(.2,.8,.2,1), border-color .2s; }
 .cursor.big { transform:translate(-50%,-50%) scale(2.8); }
 .cursor-ring.big { transform:translate(-50%,-50%) scale(.45); border-color:var(--fire); }
 .has-custom-cursor * { cursor:none !important; }
 .has-custom-cursor .cursor, .has-custom-cursor .cursor-ring { display:block; }
 
 /* ── Mouse spotlight ─────────────────────────────────────── */
-.spotlight { position:fixed; pointer-events:none; z-index:0; width:700px; height:700px; border-radius:50%; background:radial-gradient(circle, rgba(255,107,53,.055) 0%, transparent 70%); transform:translate(-50%,-50%); left:50%; top:-30%; transition:left .5s ease, top .5s ease; }
+.spotlight { position:fixed; pointer-events:none; z-index:0; width:700px; height:700px; border-radius:50%; background:radial-gradient(circle, rgba(94,106,210,.05) 0%, transparent 70%); transform:translate(-50%,-50%); left:50%; top:-30%; transition:left .5s ease, top .5s ease; }
 
 /* ── Glitch ──────────────────────────────────────────────── */
 .glitch-wrap { position:relative; display:inline-block; }
@@ -652,7 +645,7 @@ section.reveal-section.in { opacity:1; transform:translateY(0); }
     <h1 class="reveal">
       Jefferson<br>
       <span class="stroke glitch-wrap" data-text="Almeida">Almeida</span> <span class="ampersand">&amp;</span><br>
-      a obsessão pela <em style="font-style:italic;">qualidade.</em>
+      a obsessão pela <em style="color:var(--fire);">qualidade.</em>
     </h1>
     <div class="subtitle reveal">
       <span>Senior QA Engineer</span><span class="pipe">·</span>
@@ -998,17 +991,17 @@ section.reveal-section.in { opacity:1; transform:translateY(0); }
     </div>
     <div class="langs">
       <div class="lang">
-        <div class="l-name">Inglês <em style="font-style:italic; color:var(--ink-3); font-size:.7em;">— B1/B2</em></div>
+        <div class="l-name">Inglês <em style="color:var(--ink-3); font-size:.7em;">— B1/B2</em></div>
         <div class="l-level">Leitura técnica avançada · Escrita e comunicação intermediárias</div>
         <div class="bar"><div style="width:65%"></div></div>
       </div>
       <div class="lang">
-        <div class="l-name">Espanhol <em style="font-style:italic; color:var(--ink-3); font-size:.7em;">— A2</em></div>
+        <div class="l-name">Espanhol <em style="color:var(--ink-3); font-size:.7em;">— A2</em></div>
         <div class="l-level">Básico</div>
         <div class="bar"><div style="width:25%"></div></div>
       </div>
       <div class="lang">
-        <div class="l-name">Português <em style="font-style:italic; color:var(--ink-3); font-size:.7em;">— Nativo</em></div>
+        <div class="l-name">Português <em style="color:var(--ink-3); font-size:.7em;">— Nativo</em></div>
         <div class="l-level">Brasil · Comunicação plena</div>
         <div class="bar"><div style="width:100%"></div></div>
       </div>
@@ -1019,10 +1012,10 @@ section.reveal-section.in { opacity:1; transform:translateY(0); }
   <section id="contato" class="outro">
     <div class="section-num" style="margin-bottom:1.5rem;">§ Fim · Contato</div>
     <h2>
-      Vamos construir <span class="underline">qualidade</span> juntos<em style="font-style:italic; color:var(--ink-3);">?</em>
+      Vamos construir <span class="underline">qualidade</span> juntos<em style="color:var(--ink-3);">?</em>
     </h2>
-    <p style="font-family:var(--serif); font-size:1.25rem; color:var(--ink-2); max-width:680px; font-variation-settings:'opsz' 28; line-height:1.5;">
-      Estou disponível para posições <em style="font-style:italic; color:var(--fire);">Senior QA / SDET / QE Lead</em>
+    <p style="font-family:var(--sans); font-size:1.25rem; color:var(--ink-2); max-width:680px; line-height:1.6;">
+      Estou disponível para posições <em style="font-style:normal; font-weight:500; color:var(--fire);">Senior QA / SDET / QE Lead</em>
       — remoto Brasil ou internacional. Conversamos?
     </p>
     <div class="links">
@@ -1032,7 +1025,7 @@ section.reveal-section.in { opacity:1; transform:translateY(0); }
     </div>
     <div class="signature">
       <span>Jefferson J. Almeida · Ponte Nova, MG · Brasil</span>
-      <span class="colophon">Tipografia: Fraunces, Manrope, JetBrains Mono. Sem dependências externas.</span>
+      <span class="colophon">Tipografia: Inter, JetBrains Mono. Sem dependências externas.</span>
     </div>
   </section>
 
@@ -1258,10 +1251,10 @@ console.log(
   '   ║   Quality is not a department.           ║\n' +
   '   ║   It\'s an architectural decision.        ║\n' +
   '   ╚══════════════════════════════════════════╝\n',
-  'color:#ff6b35; font-family:monospace; font-size:12px; line-height:1.4;'
+  'color:#5E6AD2; font-family:monospace; font-size:12px; line-height:1.4;'
 );
-console.log('%c→ jeffersonalmeidajna2@gmail.com', 'color:#4dd4ff; font-family:monospace;');
-console.log('%c→ linkedin.com/in/jeff-almeida-eqa', 'color:#4dd4ff; font-family:monospace;');
+console.log('%c→ jeffersonalmeidajna2@gmail.com', 'color:#8b8ee8; font-family:monospace;');
+console.log('%c→ linkedin.com/in/jeff-almeida-eqa', 'color:#8b8ee8; font-family:monospace;');
 </script>
 </body>
 </html>
