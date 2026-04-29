@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jefferson Almeida — Senior QA Engineer & SDET</title>
 <meta name="description" content="Senior QA Engineer com 9 anos em automação Web, API e Mobile. Quality Engineering, Shift Left, IA aplicada a QE.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230a0a0c'/%3E%3Cpath d='M18 42c8-2 11-22 18-22 5 0 5 8 0 8-6 0-5-10 4-10 4 0 7 3 7 7 0 9-14 12-16 21' fill='none' stroke='%23ff6b35' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -21,6 +22,7 @@
   --fire:      #ff6b35;
   --cyan:      #4dd4ff;
   --green:     #4ade80;
+  --whatsapp:  #25d366;
   --serif:     'Fraunces', Georgia, serif;
   --sans:      'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
   --mono:      'JetBrains Mono', ui-monospace, 'Courier New', monospace;
@@ -55,6 +57,14 @@ body::after {
     radial-gradient(1000px 700px at 50% 110%, rgba(74,222,128,.06), transparent 70%);
   pointer-events:none; z-index:0;
 }
+.noise-scan {
+  position:fixed; inset:0; pointer-events:none; z-index:8999;
+  background:linear-gradient(rgba(255,255,255,.018) 50%, rgba(0,0,0,0) 50%);
+  background-size:100% 4px;
+  -webkit-mask-image:linear-gradient(to bottom, transparent, #000 14%, #000 82%, transparent);
+  mask-image:linear-gradient(to bottom, transparent, #000 14%, #000 82%, transparent);
+  opacity:.28;
+}
 
 /* ── Layout ──────────────────────────────────────────────── */
 .shell { position:relative; z-index:1; max-width:var(--max); margin:0 auto; padding:0 var(--pad); }
@@ -67,7 +77,9 @@ body::after {
   font-size:.7rem; letter-spacing:.18em; text-transform:uppercase;
   color:var(--ink-3);
   border-bottom:1px solid var(--line);
-  position:relative; z-index:2;
+  position:sticky; top:0; z-index:7000;
+  background:rgba(10,10,12,.68);
+  backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
 }
 .topbar .status { display:inline-flex; align-items:center; gap:.55rem; color:var(--ink-2); }
 .dot {
@@ -78,11 +90,29 @@ body::after {
   0%,100% { box-shadow:0 0 0 4px rgba(74,222,128,.15); transform:scale(1); }
   50%     { box-shadow:0 0 0 8px rgba(74,222,128,0);  transform:scale(1.1); }
 }
-.topbar .meta-right { display:flex; gap:1.4rem; }
-.topbar .meta-right span:nth-child(2) { color:var(--ink-2); }
+.topbar .meta-right { display:flex; gap:1.2rem; align-items:center; }
+.topbar .meta-right a {
+  color:var(--ink-3); text-decoration:none; transition:color .25s ease;
+}
+.topbar .meta-right a:hover,
+.topbar .meta-right a.active { color:var(--ink); }
+.topbar .meta-right a.active::before { content:'['; color:var(--fire); }
+.topbar .meta-right a.active::after { content:']'; color:var(--fire); }
 
 /* ── Hero ────────────────────────────────────────────────── */
 .hero { padding:clamp(4rem, 12vw, 8rem) 0 clamp(3rem, 8vw, 6rem); position:relative; }
+.hero > * { position:relative; z-index:1; }
+.hero::after {
+  content:'';
+  position:absolute; inset:8% -8% auto auto;
+  width:min(42vw, 520px); height:min(42vw, 520px);
+  background:
+    linear-gradient(90deg, rgba(77,212,255,.16) 1px, transparent 1px),
+    linear-gradient(rgba(255,107,53,.12) 1px, transparent 1px);
+  background-size:34px 34px;
+  transform:perspective(800px) rotateX(58deg) rotateZ(-18deg);
+  opacity:.26; pointer-events:none; filter:blur(.2px);
+}
 .hero .eyebrow {
   font-family:var(--mono); font-size:.72rem; letter-spacing:.32em;
   text-transform:uppercase; color:var(--fire); margin-bottom:1.5rem;
@@ -151,9 +181,23 @@ body::after {
   transform:translateY(-2px);
 }
 .cta svg { width:14px; height:14px; }
+.cta.whatsapp {
+  border-color:rgba(37,211,102,.45);
+  color:var(--ink);
+}
+.cta.whatsapp:hover {
+  border-color:var(--whatsapp);
+  background:var(--whatsapp);
+  color:#06160b;
+}
 
 /* ── Section base ────────────────────────────────────────── */
 section { padding:clamp(4rem, 9vw, 7rem) 0; position:relative; }
+section.reveal-section {
+  opacity:0; transform:translateY(28px);
+  transition:opacity .9s ease, transform .9s cubic-bezier(.2,.8,.2,1);
+}
+section.reveal-section.in { opacity:1; transform:translateY(0); }
 .section-head {
   display:flex; align-items:baseline; justify-content:space-between;
   gap:2rem; margin-bottom:3.5rem; flex-wrap:wrap;
@@ -266,6 +310,20 @@ section { padding:clamp(4rem, 9vw, 7rem) 0; position:relative; }
   border-top:1px solid var(--line);
   position:relative;
 }
+.exp::before {
+  content:''; position:absolute; left:200px; top:0; bottom:0; width:1px;
+  background:linear-gradient(to bottom, transparent, var(--line-2), transparent);
+  transform:translateX(1.5rem);
+}
+.exp::after {
+  content:''; position:absolute; left:200px; top:3.05rem;
+  width:9px; height:9px; border-radius:50%;
+  background:var(--bg); border:1px solid var(--fire);
+  box-shadow:0 0 0 0 rgba(255,107,53,.28);
+  transform:translateX(calc(1.5rem - 4px));
+  transition:box-shadow .4s ease, background .4s ease;
+}
+.exp:hover::after { background:var(--fire); box-shadow:0 0 0 8px rgba(255,107,53,.12); }
 .exp:last-child { border-bottom:1px solid var(--line); }
 .exp .when {
   font-family:var(--mono); font-size:.78rem; color:var(--ink-2);
@@ -381,6 +439,11 @@ section { padding:clamp(4rem, 9vw, 7rem) 0; position:relative; }
 .lang .bar > div {
   height:100%; background:linear-gradient(90deg, var(--fire), var(--cyan));
 }
+.js .lang .bar > div {
+  transform-origin:left; transform:scaleX(0);
+  transition:transform 1.1s cubic-bezier(.2,.8,.2,1);
+}
+.js .lang.in .bar > div { transform:scaleX(1); }
 
 /* ── Footer / CTA final ──────────────────────────────────── */
 .outro {
@@ -445,6 +508,30 @@ section { padding:clamp(4rem, 9vw, 7rem) 0; position:relative; }
 .console .line .info { color:var(--cyan); }
 .console .line .warn { color:var(--fire); }
 
+/* Floating WhatsApp */
+.whatsapp-fab {
+  position:fixed; left:1.5rem; bottom:1.5rem; z-index:6000;
+  width:56px; height:56px; border-radius:50%;
+  display:grid; place-items:center;
+  color:#06160b; background:var(--whatsapp);
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 18px 45px rgba(37,211,102,.28), 0 0 0 0 rgba(37,211,102,.34);
+  text-decoration:none;
+  animation:whatsapp-pulse 2.6s ease-in-out infinite;
+  opacity:0; pointer-events:none; transform:translateY(18px) scale(.96);
+  transition:opacity .25s ease, transform .25s ease, box-shadow .25s ease;
+}
+.show-whatsapp-fab .whatsapp-fab { opacity:1; pointer-events:auto; transform:translateY(0) scale(1); }
+.whatsapp-fab:hover {
+  transform:translateY(-4px) scale(1.04);
+  box-shadow:0 24px 60px rgba(37,211,102,.36), 0 0 0 9px rgba(37,211,102,.1);
+}
+.whatsapp-fab svg { width:27px; height:27px; }
+@keyframes whatsapp-pulse {
+  0%,100% { box-shadow:0 18px 45px rgba(37,211,102,.28), 0 0 0 0 rgba(37,211,102,.32); }
+  50% { box-shadow:0 18px 45px rgba(37,211,102,.28), 0 0 0 13px rgba(37,211,102,0); }
+}
+
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 980px) {
   .metrics { grid-template-columns:repeat(2, 1fr); }
@@ -455,11 +542,24 @@ section { padding:clamp(4rem, 9vw, 7rem) 0; position:relative; }
   .edu .blurb { grid-column:1; }
   .topbar .meta-right { display:none; }
   .console { display:none; }
+  .exp::before, .exp::after { display:none; }
 }
 @media (max-width:560px) {
   .hero h1 { font-size:clamp(3rem, 18vw, 6rem); }
   .langs { gap:1.5rem; }
   .cta-row { gap:.6rem; }
+  .whatsapp-fab { width:50px; height:50px; left:1rem; bottom:1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    scroll-behavior:auto !important;
+    transition-duration:.01ms !important;
+  }
+  .has-custom-cursor * { cursor:auto !important; }
+  .cursor, .cursor-ring, .spotlight { display:none !important; }
 }
 
 /* ── Reveal on load ──────────────────────────────────────── */
@@ -515,7 +615,7 @@ section { padding:clamp(4rem, 9vw, 7rem) 0; position:relative; }
 
 /* ── Print ───────────────────────────────────────────────── */
 @media print {
-  body::before, body::after, .console, .topbar { display:none !important; }
+  body::before, body::after, .console, .topbar, .whatsapp-fab, .noise-scan { display:none !important; }
   body { background:#fff; color:#000; }
   .hero, section { padding:1.2rem 0; break-inside:avoid; }
   .metric, .edu, .cert { background:#fff !important; }
@@ -531,15 +631,17 @@ section { padding:clamp(4rem, 9vw, 7rem) 0; position:relative; }
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 <div class="spotlight" id="spotlight"></div>
+<div class="noise-scan" aria-hidden="true"></div>
 
 <!-- ── Topbar ───────────────────────────────────────────── -->
 <div class="topbar">
   <span class="status"><span class="dot"></span>Available · Senior QA / SDET</span>
-  <div class="meta-right">
-    <span>Vol. 09</span>
-    <span>Quality Engineering Manifesto</span>
-    <span>BR · 2026</span>
-  </div>
+  <nav class="meta-right" aria-label="Navegacao principal">
+    <a href="#manifesto">Manifesto</a>
+    <a href="#stack">Stack</a>
+    <a href="#trajetoria">Trajetoria</a>
+    <a href="#contato">Contato</a>
+  </nav>
 </div>
 
 <div class="shell">
@@ -573,7 +675,10 @@ section { padding:clamp(4rem, 9vw, 7rem) 0; position:relative; }
         LinkedIn
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
       </a>
-      <a class="cta" href="tel:+5531989688098">+55 (31) 98968-8098</a>
+      <a class="cta whatsapp" href="https://wa.me/5531989688098?text=Oi%2C%20Jefferson.%20Vi%20seu%20curriculo%20online%20e%20quero%20conversar." target="_blank" rel="noopener" aria-label="Conversar com Jefferson Almeida pelo WhatsApp">
+        WhatsApp
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 11.5a8.5 8.5 0 01-12.6 7.4L4 20l1.1-3.2A8.5 8.5 0 1120 11.5Z"/><path d="M8.8 8.9c.2-.5.4-.6.7-.6h.5c.2 0 .4.1.5.4l.6 1.4c.1.3.1.5-.1.7l-.4.5c.5.9 1.2 1.6 2.2 2.1l.5-.4c.2-.2.5-.2.8-.1l1.3.6c.3.1.4.3.4.6v.5c0 .3-.2.5-.6.7-.5.2-1.7.4-3.4-.5-1.9-.9-3.3-2.4-4-4.1-.6-1.5-.3-2.4 0-2.8Z"/></svg>
+      </a>
     </div>
   </header>
 
@@ -585,7 +690,7 @@ section { padding:clamp(4rem, 9vw, 7rem) 0; position:relative; }
   </div>
 
   <!-- ── Manifesto ─────────────────────────────────────── -->
-  <section class="manifesto">
+  <section id="manifesto" class="manifesto">
     <div class="section-head">
       <div>
         <div class="section-num">§ 01 · Manifesto</div>
@@ -635,7 +740,7 @@ section { padding:clamp(4rem, 9vw, 7rem) 0; position:relative; }
   </section>
 
   <!-- ── Stack ─────────────────────────────────────────── -->
-  <section>
+  <section id="stack">
     <div class="section-head">
       <div>
         <div class="section-num">§ 02 · Stack</div>
@@ -722,7 +827,7 @@ section { padding:clamp(4rem, 9vw, 7rem) 0; position:relative; }
   </section>
 
   <!-- ── Experiência ───────────────────────────────────── -->
-  <section>
+  <section id="trajetoria">
     <div class="section-head">
       <div>
         <div class="section-num">§ 03 · Trajetória</div>
@@ -911,7 +1016,7 @@ section { padding:clamp(4rem, 9vw, 7rem) 0; position:relative; }
   </section>
 
   <!-- ── Outro ─────────────────────────────────────────── -->
-  <section class="outro">
+  <section id="contato" class="outro">
     <div class="section-num" style="margin-bottom:1.5rem;">§ Fim · Contato</div>
     <h2>
       Vamos construir <span class="underline">qualidade</span> juntos<em style="font-style:italic; color:var(--ink-3);">?</em>
@@ -922,7 +1027,7 @@ section { padding:clamp(4rem, 9vw, 7rem) 0; position:relative; }
     </p>
     <div class="links">
       <a href="mailto:jeffersonalmeidajna2@gmail.com">jeffersonalmeidajna2@gmail.com</a>
-      <a href="tel:+5531989688098">+55 (31) 98968-8098</a>
+      <a href="https://wa.me/5531989688098?text=Oi%2C%20Jefferson.%20Vi%20seu%20curriculo%20online%20e%20quero%20conversar." target="_blank" rel="noopener">WhatsApp: +55 (31) 98968-8098</a>
       <a href="https://www.linkedin.com/in/jeff-almeida-eqa/" target="_blank" rel="noopener">linkedin.com/in/jeff-almeida-eqa</a>
     </div>
     <div class="signature">
@@ -933,6 +1038,10 @@ section { padding:clamp(4rem, 9vw, 7rem) 0; position:relative; }
 
 </div>
 
+<a class="whatsapp-fab" href="https://wa.me/5531989688098?text=Oi%2C%20Jefferson.%20Vi%20seu%20curriculo%20online%20e%20quero%20conversar." target="_blank" rel="noopener" aria-label="Abrir conversa no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11.5a8.5 8.5 0 01-12.6 7.4L4 20l1.1-3.2A8.5 8.5 0 1120 11.5Z"/><path d="M8.8 8.9c.2-.5.4-.6.7-.6h.5c.2 0 .4.1.5.4l.6 1.4c.1.3.1.5-.1.7l-.4.5c.5.9 1.2 1.6 2.2 2.1l.5-.4c.2-.2.5-.2.8-.1l1.3.6c.3.1.4.3.4.6v.5c0 .3-.2.5-.6.7-.5.2-1.7.4-3.4-.5-1.9-.9-3.3-2.4-4-4.1-.6-1.5-.3-2.4 0-2.8Z"/></svg>
+</a>
+
 <!-- ── Floating QA console ───────────────────────────────── -->
 <aside class="console" aria-hidden="true">
   <div class="title">qa.live · output</div>
@@ -940,11 +1049,51 @@ section { padding:clamp(4rem, 9vw, 7rem) 0; position:relative; }
 </aside>
 
 <script>
+document.documentElement.classList.add('js');
+
 /* ── Reveal on load ───────────────────────────────────── */
 window.addEventListener('load', () => {
   const els = document.querySelectorAll('.reveal');
   els.forEach((el, i) => setTimeout(() => el.classList.add('in'), 120 + i * 140));
 });
+
+/* ── Section choreography ─────────────────────────────── */
+const sections = document.querySelectorAll('.shell > section');
+sections.forEach(section => section.classList.add('reveal-section'));
+
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      entry.target.querySelectorAll('.lang').forEach(lang => lang.classList.add('in'));
+      sectionObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
+sections.forEach(section => sectionObserver.observe(section));
+
+/* ── Active top navigation ────────────────────────────── */
+const navLinks = [...document.querySelectorAll('.meta-right a[href^="#"]')];
+const navTargets = navLinks
+  .map(link => document.querySelector(link.getAttribute('href')))
+  .filter(Boolean);
+
+const updateActiveNav = () => {
+  const passedTargets = navTargets.filter(section => section.getBoundingClientRect().top <= 140);
+  const current = passedTargets[passedTargets.length - 1] || navTargets[0];
+
+  navLinks.forEach(link => {
+    link.classList.toggle('active', current && link.getAttribute('href') === `#${current.id}`);
+  });
+};
+updateActiveNav();
+window.addEventListener('scroll', updateActiveNav, { passive:true });
+
+const updateFloatingWhatsApp = () => {
+  document.body.classList.toggle('show-whatsapp-fab', window.scrollY > 360);
+};
+updateFloatingWhatsApp();
+window.addEventListener('scroll', updateFloatingWhatsApp, { passive:true });
 
 /* ── Count-up metrics ─────────────────────────────────── */
 const counters = document.querySelectorAll('[data-count]');
@@ -1019,7 +1168,7 @@ if (window.matchMedia('(pointer:fine)').matches) {
     requestAnimationFrame(moveCursor);
   };
   requestAnimationFrame(moveCursor);
-  document.querySelectorAll('a, .cta, .metric, .cert, .tag').forEach(el => {
+  document.querySelectorAll('a, .cta, .metric, .cert, .tag, .whatsapp-fab').forEach(el => {
     el.addEventListener('mouseenter', () => { cur.classList.add('big'); ring.classList.add('big'); });
     el.addEventListener('mouseleave', () => { cur.classList.remove('big'); ring.classList.remove('big'); });
   });
@@ -1059,6 +1208,16 @@ document.querySelectorAll('.cta').forEach(btn => {
     btn.style.transition = 'transform .6s cubic-bezier(.2,.8,.2,1)';
     btn.style.transform  = '';
   });
+});
+
+document.querySelectorAll('.whatsapp-fab').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const r = btn.getBoundingClientRect();
+    const x = (e.clientX - r.left - r.width / 2) * .16;
+    const y = (e.clientY - r.top - r.height / 2) * .16;
+    btn.style.transform = `translate(${x}px,${y - 4}px) scale(1.04)`;
+  });
+  btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
 });
 
 /* ── Glitch on "Almeida" ──────────────────────────────── */
